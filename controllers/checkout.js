@@ -10,7 +10,7 @@ exports.orderCheckout = async (req, res, next) => {
       userCart = await req.user.getCart();
       userCartItems = await userCart.getProducts();
       const lineItems = userCartItems.map((item) => {
-        // stripe needs an array of objects that has currrency quantity and amount
+        // stripe needs an array of objects that has currency quantity and amount
         return {
           price_data: {
             currency: "usd",

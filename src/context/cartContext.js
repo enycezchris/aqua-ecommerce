@@ -32,7 +32,7 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const addToCart = async ({ product, quantity }) => {
-    await axios.put(cartURL, { product, quantity });
+    axios.put(cartURL, { product, quantity });
     setCartItems((prev) => {
       // find the product in cart
       const itemExists = prev?.find((item) => item.id === product.id);
@@ -59,16 +59,17 @@ export const CartProvider = ({ children }) => {
 
   const handleOrderButton = async ({ cartItems, orderTotal }) => {
     const stripe = await stripePromise;
-    await axios.post(checkoutURL, { cartItems, orderTotal });
-    stripe.redirectToCheckout({
-      sessionId: response.data.stripeSession.id,
+    axios.post(checkoutURL, { cartItems, orderTotal }).then((response) => {
+      stripe.redirectToCheckout({
+        sessionId: response.data.stripeSession.id,
+      });
+      axios.post(orderUrl, { cartItems, orderTotal });
+      setCartItems([]);
     });
-    await axios.post(orderUrl, { cartItems, orderTotal });
-    setCartItems([]);
   };
 
   const updateQuantity = async ({ product, quantity }) => {
-    await axios.put(cartURL, { product, quantity });
+    axios.put(cartURL, { product, quantity });
 
     setCartItems((prev) => {
       const newItemsArr = [...prev];
@@ -89,7 +90,7 @@ export const CartProvider = ({ children }) => {
 
   const removeFromCart = async ({ product }) => {
     // delete route req.body is undefined unless you pass in data as second paramenter { data: {product: item}}
-    await axios.delete(cartURL, { data: { product: product } });
+    axios.delete(cartURL, { data: { product: product } });
     // setting the newCartItem state by filtering the cartItems with the id not equal to the deleted Item's id
     setCartItems((prev) => {
       const itemToDelete = prev.filter(
