@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useSearchParams } from "react-router-dom";
-import CartContext from "../context/cartContext";
+import { useSearchParams } from "react-router-dom";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import ProductCards from "./ProductCards";
+import { Container, Link, Section } from "../styled-components/Products";
 
 const Products = () => {
   const productsURL = "/shop/products";
@@ -12,14 +15,11 @@ const Products = () => {
   // search the term "page" from the url query params ("/?page=")
   const page = searchParams.get("page");
   const totalPages = Math.ceil(productsTotal / products.length);
-  const { cartItems, addToCart, cartTotalItems } = useContext(CartContext);
-
   const createPaginationPages = () => {
     const numOfPages = [];
     for (let i = 1; i <= totalPages; i++) {
-      console.log("i", i);
       numOfPages.push(
-        <Link style={{ padding: "5px" }} key={i} to={`/products?page=${i}`}>
+        <Link key={i} to={`/products?page=${i}`}>
           {i}
         </Link>
       );
@@ -43,44 +43,14 @@ const Products = () => {
   }, [page]);
 
   return (
-    <div>
-      <Link to="/cart">Cart({cartTotalItems})</Link>
+    <Container>
+      <Navbar />
       {(products || []).map((product) => {
-        return (
-          <ul key={product.id}>
-            <Link to={`/product/${product.id}`}>
-              <img
-                style={{ width: "250px", height: "250px" }}
-                src={product.img}
-              />
-            </Link>
-            <li>{product.name}</li>
-            <li>${product.price}</li>
-            <li>{product.description}</li>
-            <button
-              onClick={() => {
-                const itemToAdd = cartItems?.find(
-                  (item) => item.id === product.id
-                );
-                if (itemToAdd) {
-                  addToCart({
-                    product,
-                    quantity: itemToAdd?.cartItem?.quantity + 1,
-                  });
-                } else {
-                  addToCart({ product, quantity: 1 });
-                }
-              }}
-            >
-              Add to cart
-            </button>
-          </ul>
-        );
+        return <ProductCards key={product.id} product={product} />;
       })}
-      <section style={{ padding: "30px", textAlign: "center" }}>
-        {createPaginationPages()}
-      </section>
-    </div>
+      <Section>{createPaginationPages()}</Section>
+      <Footer />
+    </Container>
   );
 };
 

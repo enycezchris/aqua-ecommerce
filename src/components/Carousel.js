@@ -4,56 +4,65 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { carouselData } from "./utils/carouselData";
 import {
   Container,
-  ArrowDirection,
+  ArrowContainer,
   Wrapper,
-  Slide,
+  CarouselContainer,
+  CarouselInfoContainer,
+  CarouselImageContainer,
   Image,
-  ImageDiv,
-  InfoDiv,
-  Title,
+  Category,
+  Description,
   Button,
 } from "../styled-components/Carousel";
 import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
-  const [slideItem, setSlideItem] = useState(0);
-  const navigate = useNavigate();
-  const arrowClick = (direction) => {
+  // setting the carousel index( slide 0 , slide 1, etc...) default to 0
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const handleArrowDirection = (direction) => {
     if (direction === "back") {
-      setSlideItem(slideItem > 0 ? slideItem - 1 : 3);
+      // if the direction is "back", check if the index is greater than 0 (first slide) if it is greater than 0 (not the first slide), set the carouselIndex to index - 1 (prev slide), if its not greater than 0 (it is the first slide), set the carouselIndex to last slide (3)
+      setCarouselIndex(carouselIndex > 0 ? carouselIndex - 1 : 3);
     } else {
-      setSlideItem(slideItem < 3 ? slideItem + 1 : 0);
+      // if the direction is "forward", check if the index is less than 3 (last slide),if it is less than 3 (it is the last slide) then increase the index by 1 (next slide), if its not less 3 (there is no next slide) set the index to 0 (first slide)
+      setCarouselIndex(carouselIndex < 3 ? carouselIndex + 1 : 0);
     }
   };
   return (
     <Container>
-      <ArrowDirection direction="back" onClick={() => arrowClick("back")}>
+      {/* Can pass props with styled-components */}
+      <ArrowContainer
+        direction="back"
+        onClick={() => {
+          handleArrowDirection("back");
+        }}
+      >
         <ArrowBackIosNewIcon />
-      </ArrowDirection>
-      <Wrapper slideItem={slideItem}>
-        {carouselData.map((slideItem) => {
+      </ArrowContainer>
+      <Wrapper carouselIndex={carouselIndex}>
+        {carouselData.map((data) => {
           return (
-            <Slide key={slideItem.id}>
-              <ImageDiv>
-                <Image src={slideItem.img}></Image>
-              </ImageDiv>
-              <InfoDiv>
-                <Title>{slideItem.category}</Title>
-                <Button
-                  onClick={() => {
-                    navigate("/products");
-                  }}
-                >
-                  Shop Now
-                </Button>
-              </InfoDiv>
-            </Slide>
+            <CarouselContainer key={data.id} bgColor={data.bgColor}>
+              <CarouselImageContainer>
+                <Image src={data.img} />
+              </CarouselImageContainer>
+              <CarouselInfoContainer>
+                <Category>{data.category}</Category>
+                <Description>{data.description}</Description>
+                <Button>Shop</Button>
+              </CarouselInfoContainer>
+            </CarouselContainer>
           );
         })}
       </Wrapper>
-      <ArrowDirection direction="forward" onClick={() => arrowClick("forward")}>
+      <ArrowContainer
+        direction="forward"
+        onClick={() => {
+          handleArrowDirection("forward");
+        }}
+      >
         <ArrowForwardIosIcon />
-      </ArrowDirection>
+      </ArrowContainer>
     </Container>
   );
 };
