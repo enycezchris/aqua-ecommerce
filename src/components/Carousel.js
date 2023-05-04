@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 const Carousel = () => {
   // setting the carousel index( slide 0 , slide 1, etc...) default to 0
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const navigate = useNavigate();
   const handleArrowDirection = (direction) => {
     if (direction === "back") {
       // if the direction is "back", check if the index is greater than 0 (first slide) if it is greater than 0 (not the first slide), set the carouselIndex to index - 1 (prev slide), if its not greater than 0 (it is the first slide), set the carouselIndex to last slide (3)
@@ -49,7 +50,13 @@ const Carousel = () => {
               <CarouselInfoContainer>
                 <Category>{data.category}</Category>
                 <Description>{data.description}</Description>
-                <Button>Shop</Button>
+                <Button
+                  onClick={() => {
+                    navigate("/products");
+                  }}
+                >
+                  Shop
+                </Button>
               </CarouselInfoContainer>
             </CarouselContainer>
           );

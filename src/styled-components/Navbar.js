@@ -59,6 +59,10 @@ export const DropDownLinks = styled(A)`
   background-color: #577d86;
   color: #87cbb9;
   padding: 12px 16px;
+  &: hover {
+    background-color: #87cbb9;
+    color: #577d86;
+  }
 `;
 
 export const DropDownContent = styled.div`
@@ -89,5 +93,7 @@ export const LogoutButton = styled.button`
   text-align: center;
   &: hover {
     cursor: pointer;
+    background-color: #87cbb9;
+    color: #577d86;
   }
 `;

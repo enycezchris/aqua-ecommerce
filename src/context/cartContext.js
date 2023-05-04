@@ -54,7 +54,7 @@ export const CartProvider = ({ children }) => {
         return newCartItem;
       }
     });
-    navigate(0);
+    navigate("/cart");
   };
 
   const handleOrderButton = async ({ cartItems, orderTotal }) => {
