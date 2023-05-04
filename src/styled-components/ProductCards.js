@@ -55,6 +55,8 @@ export const Icons = styled.div`
   }
 `;
 
+export const test = styled.div``;
+
 export const ShopIcon = styled(AddShoppingCartIcon)`
   color: #87cbb9;
 `;
