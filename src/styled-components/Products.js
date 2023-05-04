@@ -1,11 +1,6 @@
 import styled from "styled-components";
 import { Link as A } from "react-router-dom";
 
-export const Container = styled.div`
-  background-color: #577d86;
-  color: #87cbb9;
-`;
-
 export const Link = styled(A)`
   text-decoration: none;
   padding: 5px;
@@ -24,4 +19,15 @@ export const Link = styled(A)`
 export const Section = styled.section`
   text-align: center;
   padding: 30px;
+`;
+
+export const ProductsContainer = styled.div`
+  background-color: #577d86;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  padding: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;

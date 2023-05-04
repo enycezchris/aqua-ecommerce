@@ -4,7 +4,12 @@ import { useSearchParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ProductCards from "./ProductCards";
-import { Container, Link, Section } from "../styled-components/Products";
+import {
+  Container,
+  Section,
+  Link,
+  ProductsContainer,
+} from "../styled-components/Products";
 
 const Products = () => {
   const productsURL = "/shop/products";
@@ -43,14 +48,16 @@ const Products = () => {
   }, [page]);
 
   return (
-    <Container>
+    <ProductsContainer>
       <Navbar />
-      {(products || []).map((product) => {
-        return <ProductCards key={product.id} product={product} />;
-      })}
+      <Container>
+        {(products || []).map((product) => {
+          return <ProductCards key={product.id} product={product} />;
+        })}
+      </Container>
       <Section>{createPaginationPages()}</Section>
       <Footer />
-    </Container>
+    </ProductsContainer>
   );
 };
 
