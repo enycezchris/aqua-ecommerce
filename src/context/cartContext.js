@@ -42,7 +42,7 @@ export const CartProvider = ({ children }) => {
         // return the copy of previous state cause arrays are reference data type
         return [...prev];
       } else {
-        // if the product doesnt exist in cart set the product object with cartItem with quantity to the quantity entered (1) if the product doesn't exist
+        // if the product doesn't exist in cart set the product object with cartItem with quantity to the quantity entered (1) if the product doesn't exist
         const productWithQuantity = (product["cartItem"] = {
           quantity: quantity,
         });
@@ -54,7 +54,7 @@ export const CartProvider = ({ children }) => {
         return newCartItem;
       }
     });
-    navigate("/cart");
+    navigate(0);
   };
 
   const handleOrderButton = async ({ cartItems, orderTotal }) => {

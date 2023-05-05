@@ -4,7 +4,6 @@ exports.fetchAllProducts = async (req, res, next) => {
   try {
     // set a page variable;
     let page;
-    let totalProducts;
     // setting the products viewed per page
     const productsPerPage = 5;
     // if there is a req.query.page ("/?page=") in url set the page = req.query.page
@@ -61,5 +60,3 @@ exports.userGetProducts = async (req, res, next) => {
     next(e);
   }
 };
-
-
