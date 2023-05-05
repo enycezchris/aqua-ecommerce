@@ -10,7 +10,7 @@ export const IconContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   z-index: 3;
   opacity: 0;
   height: 100%;
@@ -22,6 +22,7 @@ export const Container = styled.div`
   flex: 1;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin: 3px;
   min-width: 200px;
   height: 400px;
@@ -35,8 +36,12 @@ export const Container = styled.div`
 export const Image = styled.img`
   height: 40%;
   z-index: 2;
+  border-radius: 12px;
 `;
-export const Info = styled.p``;
+export const Info = styled.p`
+  color: #87cbb9;
+  font-weight: 600;
+`;
 
 export const Icons = styled.div`
   display: flex;

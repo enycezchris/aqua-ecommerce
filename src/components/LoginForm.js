@@ -67,6 +67,7 @@ const LoginForm = () => {
           onChange={(event) => setPassword(event.target.value)}
         />
         <Link to="/reset">Forgot Password?</Link>
+        <Link to="/register">Don't have an account?</Link>
         <button
           disabled={!username || !password}
           style={{ width: "50%", padding: "10px", marginTop: "10px" }}
