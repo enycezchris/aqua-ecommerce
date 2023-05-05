@@ -7,11 +7,14 @@ import {
   Icons,
   Detail,
   ShopIcon,
+  Info,
 } from "../styled-components/ProductCards";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/authContext";
 
 const ProductCards = ({ product }) => {
   const { cartItems, addToCart } = useContext(CartContext);
+  const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
     <Container>
@@ -20,16 +23,20 @@ const ProductCards = ({ product }) => {
         <Icons>
           <ShopIcon
             onClick={() => {
-              const itemToAdd = cartItems?.find(
-                (item) => item.id === product.id
-              );
-              if (itemToAdd) {
-                addToCart({
-                  product,
-                  quantity: itemToAdd?.cartItem?.quantity + 1,
-                });
+              if (Object.keys(auth).length === 0) {
+                navigate("/login");
               } else {
-                addToCart({ product, quantity: 1 });
+                const itemToAdd = cartItems?.find(
+                  (item) => item.id === product.id
+                );
+                if (itemToAdd) {
+                  addToCart({
+                    product,
+                    quantity: itemToAdd?.cartItem?.quantity + 1,
+                  });
+                } else {
+                  addToCart({ product, quantity: 1 });
+                }
               }
             }}
           />
@@ -42,6 +49,7 @@ const ProductCards = ({ product }) => {
           />
         </Icons>
       </IconContainer>
+      <Info>Price: ${product.price}</Info>
     </Container>
   );
 };
