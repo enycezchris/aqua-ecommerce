@@ -86,7 +86,7 @@ const setupDB = async () => {
       price: 1.99,
       description:
         "The ember tetra is a freshwater fish of the characin family of order Characiformes. It is native to the Araguaia River basin of Brazil and was discovered in 1987 and named in honor of the fish explorer Heiko Bleher's mother.",
-      img: "https://cdn.shopify.com/s/files/1/2982/1930/products/ember_tetra_grande.jpg?v=1551035535",
+      img: "https://cdn.shopify.com/s/files/1/0147/1561/7366/products/EmberTetra_70c2c312-29e7-4cfe-b2ae-b48e15467daa.jpg?v=1659508571",
     }),
     Product.create({
       name: "Neon Tetra",
@@ -122,6 +122,41 @@ const setupDB = async () => {
       description:
         "The scarlet badis is a tropical freshwater fish and one of the smallest known percoid fish species. It is a micropredator, feeding on small aquatic crustaceans, worms, insect larvae and other zooplankton. It is sold under a variety of names in the aquarium trade.",
       img: "https://www.aquariadise.com/wp-content/uploads/2020/06/scarlet-badis.jpg",
+    }),
+    Product.create({
+      name: "Pygmy Corydoras",
+      price: 2.99,
+      description:
+        "The pygmy corydoras or pygmy catfish is a tropical and freshwater fish belonging to the subfamily Corydoradinae of the family Callichthyidae. It originates in tropical inland waters in South America, and is found in the Madeira River basin in Brazil.",
+      img: "https://aquariumbreeder.com/wp-content/uploads/2020/05/Pygmy-Cory-Catfish-Corydoras-pygmaeus.jpg",
+    }),
+    Product.create({
+      name: "Bumblebee Goby",
+      price: 3.99,
+      description:
+        "The bumblebee fish is a species of fresh and brackish water goby native to Thailand and Indonesia. This species can reach a length of 3.8 centimetres SL and is found in lower parts of rivers, coastal areas, mangroves and highly vegetated areas.",
+      img: "https://azgardens.com/wp-content/uploads/2017/06/Bumble-Bee-Goby-Freshwater-Aquarium-Fish.jpg",
+    }),
+    Product.create({
+      name: "Otocinclus",
+      price: 2.99,
+      description:
+        "Otocinclus is a genus of catfish in the family Loricariidae native to South America, commonly known as 'dwarf suckers' or 'otos'. This genus, like other loricariids, is characterized by rows of armour plating covering the body, as well as the underslung suckermouth.",
+      img: "https://p2u4d7g7.stackpathcdn.com/wp-content/uploads/sites/11/2019/11/otocinclus-catfish.jpg",
+    }),
+    Product.create({
+      name: "Asian Stone Catfish",
+      price: 7.99,
+      description:
+        "The Asian Stone Mini Catfish (Hara jerdoni), also known as the Moth Catfish or Anchor Catfish, is a miniature species native to slow-moving streams in India and Bangladesh. This gregarious little catfish is a peaceful micropredator that is nocturnal, but it will often leave its refuge during daylight hours when it feels secure. This catfish is very popular with nano and planted aquarium enthusiasts due to its small size and passive demeanor. ",
+      img: "https://i.pinimg.com/736x/e3/2a/a5/e32aa532cd616b4ab66b69332c79cfff.jpg",
+    }),
+    Product.create({
+      name: "Apistogramma macmasteri gold",
+      price: 16.99,
+      description:
+        "Apistogramma macmasteri is a larger species of Apistogramma and will work well as a pair in a 20 gallon tank. A sandy substrate is necessary due to their earth-eating habits. The tank should be furnished with several caves or nooks to protect and spawn in. Cichlid caves, overturned flower pots, and leaf litter work well. ",
+      img: "https://oceanfloorstore.com/wp-content/uploads/2022/03/Apistogramma-hongsloi.jpg",
     }),
   ]);
 };
