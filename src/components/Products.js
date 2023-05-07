@@ -32,9 +32,6 @@ const Products = () => {
     return numOfPages;
   };
 
-  console.log("productsLength: ", products.length);
-  console.log("productsTotal: ", productsTotal);
-
   useEffect(() => {
     axios
       .get(productsURL, {
