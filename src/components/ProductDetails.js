@@ -47,7 +47,7 @@ const ProductDetails = () => {
         <ProductDetail>
           <Title>{product.name}</Title>
           <Info>{product.description}</Info>
-          <Price>Price: ${product.price}</Price>
+          <Price>${product.price}</Price>
           <Button
             onClick={() => {
               // if auth object is empty

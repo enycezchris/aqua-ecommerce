@@ -38,7 +38,7 @@ const Navbar = () => {
           <NavItemLeft>
             <Link to="/">Logo</Link>
           </NavItemLeft>
-          <NavItemMiddle>Middle</NavItemMiddle>
+          <NavItemMiddle>Search</NavItemMiddle>
           <NavItemRight>
             <DropDownMenu>
               {/* void(0) on Link => Link goes to nowhere */}
