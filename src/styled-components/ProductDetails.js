@@ -4,6 +4,7 @@ export const Container = styled.div`
   background-color: #577d86;
   display: flex;
   height: 100vh;
+  margin-bottom: 100px;
 `;
 
 export const Title = styled.h1`
@@ -40,6 +41,7 @@ export const Info = styled.p`
   color: #57cbb9;
   font-weight: 400;
   letter-spacing: 0.2rem;
+  margin-right: 20px;
 `;
 
 export const Price = styled.span`
