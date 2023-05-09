@@ -38,6 +38,7 @@ import {
   EmptyCart,
   Link,
   ImageLink,
+  Delete,
 } from "../styled-components/Cart";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -141,6 +142,11 @@ function Cart(stripePromise) {
                               }}
                             />
                           </ProductQuantity>
+                          <Delete
+                            onClick={() => {
+                              removeFromCart({ product });
+                            }}
+                          />
                         </ProductQuantity>
                       </ProductPriceQuantityContainer>
                     </ProductInfo>

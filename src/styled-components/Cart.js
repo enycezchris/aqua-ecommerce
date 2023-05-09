@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Link as A } from "react-router-dom";
 
 export const Container = styled.div`
@@ -205,6 +206,14 @@ export const RemoveIcon = styled(RemoveCircleIcon)`
   transition: all 0.5s ease;
   &: hover {
     transform: scale(1.3);
+    cursor: pointer;
+  }
+`;
+
+export const Delete = styled(DeleteIcon)`
+  transition: all 1s ease;
+  &: hover {
+    transform: scale(1.8);
     cursor: pointer;
   }
 `;

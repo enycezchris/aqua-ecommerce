@@ -7,13 +7,13 @@ const { validationResult } = require("express-validator");
 const crypto = require("crypto");
 const Sequelize = require("sequelize");
 const { Op } = Sequelize;
+require("dotenv").config();
 
 // setting up the nodemailer with sendGrid apikey to allow sending emails
 const transporter = nodemailer.createTransport(
   sendGridTransport({
     auth: {
-      api_key:
-        "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",
+      api_key: process.env.SENDGRID_API_KEY,
     },
   })
 );
@@ -41,9 +41,7 @@ exports.userLogin = async (req, res, next) => {
 exports.userRegister = async (req, res, next) => {
   try {
     const { username, password, email } = req.body;
-    const error = validationResult(req);
     const user = await User.create({ username, password, email });
-    await user.save();
     // transporter => nodemailer that sends email through node
     transporter.sendMail({
       to: email,
@@ -51,7 +49,7 @@ exports.userRegister = async (req, res, next) => {
       subject: "Registration",
       html: "<h1>Congratulations! Your registration was successful!</h1>",
     });
-    res.json(user);
+    res.send(user);
   } catch (e) {
     console.log("error:", e);
     next(e);
@@ -94,15 +92,6 @@ exports.getSession = async (req, res, next) => {
     next(e);
   }
 };
-exports.getCsrfToken = async (req, res, next) => {
-  try {
-    const csrfToken = req.csrfToken();
-    res.json(csrfToken);
-    next();
-  } catch (e) {
-    next(e);
-  }
-};
 
 exports.resetPassword = async (req, res, next) => {
   try {
@@ -126,7 +115,7 @@ exports.resetPassword = async (req, res, next) => {
           user.passwordResetToken = resetPasswordToken;
           //   set the resettokenexp from db field to expire in an hour (3600000 milliseconds = 1 hour)
           user.passwordResetTokenExpiration = Date.now() + 3600000;
-          user.save();
+          await user.save();
           transporter.sendMail({
             to: email,
             from: "imabaos@gmail.com",
@@ -134,8 +123,8 @@ exports.resetPassword = async (req, res, next) => {
             html: `<h1>Your requested password reset link</h1>
             <p> <a href="http://localhost:3000/reset/${resetPasswordToken}">Reset Password</a> </p>`,
           });
+          res.send(user);
         }
-        return user;
       }
     });
   } catch (e) {
@@ -154,7 +143,7 @@ exports.updatePassword = async (req, res, next) => {
       //   and check if the expiration date is greater than the current time
       where: {
         passwordResetToken: passwordResetToken,
-        passwordResetTokenExpiration: { [Op.gt]: Date.now() },
+        passwordResetTokenExpiration: { [Op.gt]: Date.now() + 36000 },
       },
     });
     if (user) {
@@ -164,9 +153,8 @@ exports.updatePassword = async (req, res, next) => {
       user.passwordResetToken = null;
       //   set the resetPasswordTokenExpiration from db to null
       user.passwordResetTokenExpiration = null;
-      user.save();
-      console.log("userReset", user);
-      return user;
+      await user.save();
+      res.send(user);
     } else {
       const error = new Error("Token does not match or expired!");
       next(error);

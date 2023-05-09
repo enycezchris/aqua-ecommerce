@@ -11,6 +11,7 @@ import ResetPassword from "./components/ResetPassword";
 import UpdatePassword from "./components/UpdatePassword";
 import Confirmation from "./components/Confirmation";
 import Checkout from "./components/Checkout";
+import Profile from "./components/Profile";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
       <Route exact path="register" element={<RegisterForm />} />
       <Route exact path="confirmation" element={<Confirmation />} />
       <Route exact path="checkout" element={<Checkout />} />
+      <Route exact path="profile" element={<Profile />} />
     </Routes>
   );
 };
