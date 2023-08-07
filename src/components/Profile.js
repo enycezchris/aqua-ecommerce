@@ -1,11 +1,12 @@
 import React from "react";
-import RegisterModal from "./assets/RegisterModal";
+import Navbar from "./Navbar";
 
 const Profile = () => {
   return (
-    <div>
-      <RegisterModal />
-    </div>
+    <>
+      <Navbar />
+      <h1>Your Profile</h1>
+    </>
   );
 };
 

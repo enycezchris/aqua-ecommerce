@@ -7,7 +7,6 @@ const PORT = process.env.PORT || 3001;
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const setupDB = require("./utils/syncData");
-const sequelize = require("sequelize");
 const db = require("./utils/database");
 const csrf = require("csurf");
 const errorController = require("./controllers/error");
@@ -28,7 +27,12 @@ const sequelizeSessionStore = new SequelizeStore({ db: db });
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "http://3.142.12.33",
+      "http://3.142.12.33:3001",
+    ],
     methods: ["GET", "POST", "OPTIONS"],
     preflightContinue: true,
     credentials: true,

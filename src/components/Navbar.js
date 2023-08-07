@@ -29,8 +29,6 @@ const Navbar = () => {
     window.location.href = "/";
   };
 
-  console.log("auth", auth);
-
   return (
     <Container>
       {Object.keys(auth).length > 0 ? (
